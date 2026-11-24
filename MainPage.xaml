@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:EscuelaApp.Models"
+             x:Class="EscuelaApp.MainPage"
+             Title="Alumnos">
+
+    <Grid RowDefinitions="Auto,*"
+            Padding="16"
+            RowSpacing="10">
+
+        <Label x:Name="LblEstado"
+                Grid.Row="0"
+               Text="Cargando..."
+                TextColor="Gray"/>
+
+        <CollectionView x:Name="Lista"
+                Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectionChanged="OnAlumnoSeleccionado">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Alumno">
+                    <Border Padding="12"
+                            Margin="0,4"
+                            StrokeShape="RoundRectangle 8">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding NombreCompleto}"
+                                   FontSize="17"
+                                    FontAttributes="Bold"/>
+                            <Label Text="{Binding NoControl}"
+                                   FontSize="13"
+                                    TextColor="Gray"/>
+                            <Label Text="{Binding IdCarreraNavigation.Nombre}"
+                                   FontSize="13"
+                                    TextColor="DarkGreen"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label Text="No hay alumnos"
+                        TextColor="Gray"/>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+    </Grid>
+</ContentPage> 

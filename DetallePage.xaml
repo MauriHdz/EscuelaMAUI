@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:EscuelaApp.Models"
+             x:Class="EscuelaApp.DetallePage"
+             Title="Detalle">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
+            Padding="16"
+            RowSpacing="10">
+
+        <VerticalStackLayout Grid.Row="0">
+            <Label x:Name="LblNombre"
+                    FontSize="22"
+                    FontAttributes="Bold"/>
+            <Label x:Name="LblCarrera"
+                    TextColor="DarkGreen"/>
+            <Label x:Name="LblPromedio"
+                    TextColor="Gray"/>
+        </VerticalStackLayout>
+
+        <Label Grid.Row="1"
+                Text="Calificaciones"
+                FontAttributes="Bold"/>
+
+        <CollectionView x:Name="ListaCalif"
+                Grid.Row="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Calificacion">
+                    <Grid ColumnDefinitions="*,Auto,Auto"
+                            Padding="8,6">
+                        <Label Grid.Column="0"
+                                Text="{Binding Materia}"/>
+                        <Label Grid.Column="1"
+                                Margin="10,0"
+                               TextColor="Gray"
+                               Text="{Binding Parcial, StringFormat='P{0}'}"/>
+                        <Label Grid.Column="2"
+                                FontAttributes="Bold"
+                               Text="{Binding Valor}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label Text="Sin calificaciones"
+                        TextColor="Gray"/>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <VerticalStackLayout Grid.Row="3"
+                Spacing="8">
+            <Entry x:Name="TxtMateria"
+                    Placeholder="Materia"/>
+            <Grid ColumnDefinitions="*,*"
+                    ColumnSpacing="8">
+                <Entry x:Name="TxtParcial"
+                        Grid.Column="0"
+                       Placeholder="Parcial"
+                        Keyboard="Numeric"/>
+                <Entry x:Name="TxtValor"
+                        Grid.Column="1"
+                       Placeholder="Calificacion"
+                        Keyboard="Numeric"/>
+            </Grid>
+            <Button Text="Agregar calificacion"
+                    Clicked="OnAgregarClicked"/>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage> 
